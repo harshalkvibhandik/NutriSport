@@ -6,10 +6,5 @@ plugins {
     alias(libs.plugins.composeMultiplatform) apply false
     alias(libs.plugins.composeCompiler) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
-}
-buildscript {
-    dependencies {
-        // This part to copy paste
-        classpath("io.kotzilla:kotzilla-plugin:1.2.0-Beta3")
-    }
+    alias(libs.plugins.kotzilla) apply false
 }

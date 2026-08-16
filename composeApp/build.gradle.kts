@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.google.services)
-    id("io.kotzilla.kotzilla-plugin")
+    alias(libs.plugins.kotzilla)
 }
 
 kotlin {
@@ -17,7 +17,6 @@ kotlin {
     }
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -51,8 +50,8 @@ kotlin {
 
             api(libs.kmp.notifier)
 
-//            implementation("io.kotzilla:kotzilla-sdk:1.2.0-Beta3")
-            implementation("io.kotzilla:kotzilla-sdk-ktor3:1.3.1")
+//            implementation(libs.kotzilla.sdk)
+            implementation(libs.kotzilla.sdk)
 
             api(project(path = ":navigation"))
             api(project(path = ":shared"))

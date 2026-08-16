@@ -15,7 +15,6 @@ kotlin {
     }
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -34,8 +33,8 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
 
-            // implementation("io.kotzilla:kotzilla-sdk:1.2.0-Beta3")
-            implementation("io.kotzilla:kotzilla-sdk-ktor3:1.2.0-Beta1")
+            // implementation(libs.kotzilla.sdk)
+            implementation(libs.kotzilla.sdk)
 
             implementation(project(":feature:auth"))
             implementation(project(":feature:details"))
