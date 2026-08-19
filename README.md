@@ -50,21 +50,52 @@ NutriSport is a production-ready, multi-modular **Kotlin Multiplatform (KMP)** a
 
 The project follows a modular approach to separate concerns and improve build times:
 
-- **`:composeApp`**: The main entry point for the UI (Android & iOS).
-- **`:shared`**: Shared UI components, models, and utility classes.
-- **`:navigation`**: Centralized, type-safe navigation logic.
-- **`:data`**: Data layer containing repositories, remote API clients (Ktor), and data sources.
-- **`:di`**: Dependency Injection configuration using Koin.
-- **`:feature`**: Modularized features:
-  - `auth`: Authentication flows (Login, Register).
-  - `home`: Main dashboard with sub-modules:
-    - `products_overview`: Displaying all products.
-    - `categories`: Browsing by category.
-    - `cart` & `checkout`: Shopping cart and payment flow.
-  - `details`: Detailed product views.
-  - `profile`: User management and settings.
-  - `admin_panel`: Product management and administration.
-  - `payment_completed`: Post-checkout confirmation.
+```text
+.
+├── composeApp               # Main application module (Shared UI entry & Android app)
+│   ├── src
+│   │   ├── androidMain      # Android specific implementation (MainActivity, Manifest)
+│   │   └── commonMain       # Shared UI entry point (App.kt)
+│   └── build.gradle.kts
+├── data                     # Data layer (Repositories, Networking, Firebase, Models)
+│   ├── src
+│   │   └── commonMain
+│   └── build.gradle.kts
+├── di                       # Dependency Injection (Koin modules)
+│   ├── src
+│   │   └── commonMain
+│   └── build.gradle.kts
+├── feature                  # Feature-based modules
+│   ├── admin_panel          # Product & order management (Admin only)
+│   │   └── manage_product
+│   ├── auth                 # Authentication (Login, Register, Social Auth)
+│   ├── details              # Product detail views
+│   ├── home                 # Dashboard and product discovery
+│   │   ├── cart             # Shopping cart logic
+│   │   │   └── checkout     # Payment processing
+│   │   ├── categories       # Category browsing
+│   │   │   └── category_search
+│   │   └── products_overview
+│   ├── payment_completed    # Post-purchase confirmation
+│   └── profile              # User account management
+├── navigation               # Type-safe navigation graph and routes
+│   ├── src
+│   │   └── commonMain
+│   └── build.gradle.kts
+├── shared                   # Core UI components, themes, and utility classes
+│   ├── src
+│   │   ├── androidMain
+│   │   ├── commonMain       # Design system (Colors, Fonts), Reusable Components
+│   │   └── iosMain
+│   └── build.gradle.kts
+├── iosApp                   # Native iOS Xcode project
+├── gradle
+│   └── libs.versions.toml   # Centralized dependency management
+├── build.gradle.kts         # Root build script
+└── settings.gradle.kts      # Module orchestration
+```
+
+### Module Responsibilities:
 
 ---
 
